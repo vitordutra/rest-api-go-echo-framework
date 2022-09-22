@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func Welcome(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, `
 	<html>
   <head>
@@ -19,6 +19,22 @@ func ServeHTTP(w http.ResponseWriter, r *http.Request) {
 </html>`)
 }
 
+func Login(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, `
+	<html>
+  <head>
+     Hi
+  </head>
+  <body>
+     <h1>
+       Login
+     </h1>
+  </body>
+</html>`)
+}
+
 func main() {
-	http.ListenAndServe("localhost:8081", http.HandlerFunc(ServeHTTP))
+	http.HandleFunc("/login", Login)
+	http.HandleFunc("/welcome", Welcome)
+	http.ListenAndServe("localhost:8081", nil)
 }
