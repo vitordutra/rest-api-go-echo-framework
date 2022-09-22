@@ -8,8 +8,17 @@ import (
 type MyWebserverType bool
 
 func (m MyWebserverType) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Well, hello there!")
-	fmt.Fprintln(w, "Request is: %+v", r)
+	fmt.Fprintln(w, `
+	<html>
+  <head>
+     Hi
+  </head>
+  <body>
+     <h1>
+        My name is João Vitor Dutra
+     </h1>
+  </body>
+</html>`)
 }
 
 func main() {
